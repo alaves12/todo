@@ -1,8 +1,10 @@
 {% extends 'base.html'%}
+{% csrf_token %}
 
 {% block content %}
 <div id="app">
-<form @submit.prevent="createTask">
+<form @submit.prevent="createTask"> 
+    {% csrf_token %}
     <div class="form-group row">
         <div class="col-9">
             <label>Create New Task</label>

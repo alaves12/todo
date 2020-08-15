@@ -7,6 +7,10 @@ from django.forms.models import model_to_dict
 
 from .models import Task
 from .forms import TaskForm
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
+
+
 
 class TaskView(View):
     def get(self, request):
@@ -16,9 +20,11 @@ class TaskView(View):
             return JsonResponse({'tasks':tasks}, status=200)
         
         return render(request, 'task/tasks.html')
-    
+    method_decorator(csrf_protect)
     def post(self,request):
         bound_form = TaskForm(request.POST)
+        print(request.POST)
+        print(bound_form)
 
         if bound_form.is_valid():
             new_task = bound_form.save()

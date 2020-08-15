@@ -8,7 +8,8 @@ function sendRequest(url, method, data){
         xsrfHeaderName: 'x-CSRFToken',
         headers: {
             'X-Requested-with': 'XMLHttpRequest'
-        }
+        },
+        credentials: 'include'
     })
     return r
 }
